@@ -1,0 +1,44 @@
+/* ===== Livro grande que abre e folheia (CSS puro) ===== */
+.secao-livro { background: radial-gradient(circle at 50% 40%, #fffaf0, #efe6cf); padding: 56px 16px 72px; text-align: center; overflow: hidden; }
+.secao-livro h2 { font-family: Georgia, serif; font-size: 1.8rem; margin: 0 0 6px; }
+.secao-livro p.sub { margin: 0 0 40px; color: var(--suave); }
+
+.cena { --w: min(290px, 19vw); --h: calc(var(--w) * 1.38); font-size: calc(var(--w) / 18);
+  width: calc(var(--w) * 2); height: var(--h); margin: 0 auto;
+  perspective: 2000px; perspective-origin: 50% 35%; position: relative; }
+.livro-3d { position: absolute; inset: 0; transform-style: preserve-3d; animation: livroDesloca 18s ease-in-out infinite; }
+.livro-3d::after { content: ""; position: absolute; left: 4%; right: 4%; bottom: -34px; height: 26px; border-radius: 50%;
+  background: radial-gradient(rgba(0,0,0,.35), transparent 70%); transform: translateZ(-10px); }
+
+.pagina-base, .folha { position: absolute; left: 50%; top: 0; width: var(--w); height: var(--h); }
+.pagina-base { transform: translateZ(0); }
+.folha { transform-origin: left center; transform-style: preserve-3d; animation-duration: 18s; animation-iteration-count: infinite; animation-timing-function: ease-in-out; }
+.folha > div, .pagina-base { box-sizing: border-box; padding: 2em 1.6em; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .7em;
+  font-family: Georgia, serif; color: #3b2f22; }
+.folha > div { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.folha .tras { transform: rotateY(180deg); }
+.frente, .tras, .pagina-base { background: #fffaf0 repeating-linear-gradient(0deg, transparent 0 26px, rgba(150,120,70,.07) 26px 27px);
+  border-radius: 0 12px 12px 0; box-shadow: inset 12px 0 18px -10px rgba(0,0,0,.25), 2px 2px 6px rgba(0,0,0,.12); }
+.tras { box-shadow: inset 12px 0 18px -10px rgba(0,0,0,.25); }
+
+.folha h3 { font-size: 2em; margin: 0; color: var(--verde2); }
+.folha small, .pagina-base small { font-style: italic; color: #7a6a52; line-height: 1.5; }
+.orn { font-size: 1.6em; color: var(--coral); }
+.grande { font-size: 3.4em; }
+
+.capa-livro { background: linear-gradient(145deg, #1b5e50, #0f3d34) !important; color: var(--ouro) !important;
+  border: 3px solid var(--ouro); box-shadow: 0 0 0 6px #0f3d34 inset, 8px 10px 24px rgba(0,0,0,.35) !important; }
+.capa-livro h3 { color: var(--ouro); font-size: 2.2em; line-height: 1.1; }
+.capa-livro small { color: #e9d9a6; }
+
+/* Cada folha vira em um momento do ciclo de 18s; todas fecham juntas no final. */
+@keyframes livroDesloca { 0%,8% { transform: translateX(calc(var(--w) / -2)); } 16%,84% { transform: translateX(0); } 94%,100% { transform: translateX(calc(var(--w) / -2)); } }
+@keyframes folha0 { 0%,8%   { transform: translateZ(7.5px) rotateY(0); } 16%,84% { transform: translateZ(1.5px) rotateY(-180deg); } 94%,100% { transform: translateZ(7.5px) rotateY(0); } }
+@keyframes folha1 { 0%,22%  { transform: translateZ(6px)   rotateY(0); } 30%,84% { transform: translateZ(3px)   rotateY(-180deg); } 94%,100% { transform: translateZ(6px)   rotateY(0); } }
+@keyframes folha2 { 0%,36%  { transform: translateZ(4.5px) rotateY(0); } 44%,84% { transform: translateZ(4.5px) rotateY(-180deg); } 94%,100% { transform: translateZ(4.5px) rotateY(0); } }
+@keyframes folha3 { 0%,50%  { transform: translateZ(3px)   rotateY(0); } 58%,84% { transform: translateZ(6px)   rotateY(-180deg); } 94%,100% { transform: translateZ(3px)   rotateY(0); } }
+@keyframes folha4 { 0%,64%  { transform: translateZ(1.5px) rotateY(0); } 72%,84% { transform: translateZ(7.5px) rotateY(-180deg); } 94%,100% { transform: translateZ(1.5px) rotateY(0); } }
+.f0 { animation-name: folha0; } .f1 { animation-name: folha1; } .f2 { animation-name: folha2; }
+.f3 { animation-name: folha3; } .f4 { animation-name: folha4; }
+
+@media (max-width: 900px) { .cena { --w: min(170px, 36vw); } }
