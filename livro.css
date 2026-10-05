@@ -42,3 +42,6 @@
 .f3 { animation-name: folha3; } .f4 { animation-name: folha4; }
 
 @media (max-width: 900px) { .cena { --w: min(170px, 36vw); } }
+
+.hero.autora .capa-livro img { width: 58%; aspect-ratio: 1; object-fit: cover; object-position: center 20%; border-radius: 50%;
+  border: .18em solid var(--ouro); box-shadow: 0 .5em 1.2em rgba(0,0,0,.4); }
