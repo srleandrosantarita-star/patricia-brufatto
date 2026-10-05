@@ -1,10 +1,10 @@
 /* ===== Tema verde & creme, topo centralizado ===== */
 :root {
-  --verde: #0f3d34; --verde2: #1b5e50; --creme: #fbf5e6; --coral: #e0693f; --ouro: #f2c14e;
-  --bg: #fbf5e6; --marca: #1b5e50; --marca-esc: #0f3d34; --borda: #e4dcc6; --suave: #6b6a5c;
+  --verde: #2e1a4a; --verde2: #6b45a3; --creme: #f8f3fc; --coral: #d9558f; --ouro: #f2c14e;
+  --bg: #f6f0fb; --marca: #6b45a3; --marca-esc: #2e1a4a; --borda: #ddd0ee; --suave: #6d6480;
 }
-.topbar { background: rgba(251,245,230,.88); backdrop-filter: blur(8px); }
-.bloco.claro { background: #efe6cf; }
+.topbar { background: rgba(246,240,251,.9); backdrop-filter: blur(8px); }
+.bloco.claro { background: #ebe0f5; }
 
 /* ---------- Topo ---------- */
 .hero.autora { position: relative; overflow: hidden; min-height: 86vh; color: var(--creme);
@@ -52,8 +52,8 @@
 @keyframes pisca { 50% { opacity: 0; } }
 
 .hero-botoes { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; opacity: 0; animation: sobe .8s 2.4s forwards; }
-.hero.autora .btn-primario { background: var(--coral); color: #fff; font-weight: 700; box-shadow: 0 0 0 0 rgba(224,105,63,.6); animation: batida 2.2s 3.2s infinite; }
-@keyframes batida { 70% { box-shadow: 0 0 0 16px rgba(224,105,63,0); } 100% { box-shadow: 0 0 0 0 rgba(224,105,63,0); } }
+.hero.autora .btn-primario { background: var(--coral); color: #fff; font-weight: 700; box-shadow: 0 0 0 0 rgba(217,85,143,.6); animation: batida 2.2s 3.2s infinite; }
+@keyframes batida { 70% { box-shadow: 0 0 0 16px rgba(217,85,143,0); } 100% { box-shadow: 0 0 0 0 rgba(217,85,143,0); } }
 .btn-vazado { border: 2px solid var(--ouro); color: var(--ouro); border-radius: 8px; transition: background .2s, color .2s; }
 .btn-vazado:hover { background: var(--ouro); color: var(--verde); }
 .btn-link { transition: transform .2s; }
@@ -85,7 +85,7 @@
 .linha-tempo time { color: var(--coral); }
 .linha-tempo li { position: relative; }
 .linha-tempo li::before { content: ""; position: absolute; left: -29px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: var(--coral); animation: pulso 2.2s infinite; }
-@keyframes pulso { 0% { box-shadow: 0 0 0 0 rgba(224,105,63,.5); } 70%,100% { box-shadow: 0 0 0 12px rgba(224,105,63,0); } }
+@keyframes pulso { 0% { box-shadow: 0 0 0 0 rgba(217,85,143,.5); } 70%,100% { box-shadow: 0 0 0 12px rgba(217,85,143,0); } }
 .linha-tempo li > div { background: #fff; padding: 16px 18px; border-radius: 12px; box-shadow: 0 4px 14px rgba(0,0,0,.06); transition: transform .25s; }
 .linha-tempo li:hover > div { transform: translateX(6px); }
 

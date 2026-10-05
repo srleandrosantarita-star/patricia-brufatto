@@ -1,5 +1,5 @@
 /* ===== Livro grande que abre e folheia (CSS puro) ===== */
-.secao-livro { background: radial-gradient(circle at 50% 40%, #fffaf0, #efe6cf); padding: 56px 16px 72px; text-align: center; overflow: hidden; }
+.secao-livro { background: radial-gradient(circle at 50% 40%, #fdfaff, #ebe0f5); padding: 56px 16px 72px; text-align: center; overflow: hidden; }
 .secao-livro h2 { font-family: Georgia, serif; font-size: 1.8rem; margin: 0 0 6px; }
 .secao-livro p.sub { margin: 0 0 40px; color: var(--suave); }
 
@@ -14,15 +14,15 @@
 .pagina-base { transform: translateZ(0); }
 .folha { transform-origin: left center; transform-style: preserve-3d; animation-duration: 18s; animation-iteration-count: infinite; animation-timing-function: ease-in-out; }
 .folha > div, .pagina-base { box-sizing: border-box; padding: 2em 1.6em; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .7em;
-  font-family: Georgia, serif; color: #3b2f22; }
+  font-family: Georgia, serif; color: #33284a; }
 .folha > div { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
 .folha .tras { transform: rotateY(180deg); }
-.frente, .tras, .pagina-base { background: #fffaf0 repeating-linear-gradient(0deg, transparent 0 26px, rgba(150,120,70,.07) 26px 27px);
+.frente, .tras, .pagina-base { background: #fdfaff repeating-linear-gradient(0deg, transparent 0 26px, rgba(110,80,160,.07) 26px 27px);
   border-radius: 0 12px 12px 0; box-shadow: inset 12px 0 18px -10px rgba(0,0,0,.25), 2px 2px 6px rgba(0,0,0,.12); }
 .tras { box-shadow: inset 12px 0 18px -10px rgba(0,0,0,.25); }
 
 .folha h3 { font-size: 2em; margin: 0; color: var(--verde2); }
-.folha small, .pagina-base small { font-style: italic; color: #7a6a52; line-height: 1.5; }
+.folha small, .pagina-base small { font-style: italic; color: #7a6a8c; line-height: 1.5; }
 .orn { font-size: 1.6em; color: var(--coral); }
 .grande { font-size: 3.4em; }
 
