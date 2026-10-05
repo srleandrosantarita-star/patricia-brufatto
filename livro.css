@@ -26,8 +26,8 @@
 .orn { font-size: 1.6em; color: var(--coral); }
 .grande { font-size: 3.4em; }
 
-.capa-livro { background: linear-gradient(145deg, #1b5e50, #0f3d34) !important; color: var(--ouro) !important;
-  border: 3px solid var(--ouro); box-shadow: 0 0 0 6px #0f3d34 inset, 8px 10px 24px rgba(0,0,0,.35) !important; }
+.capa-livro { background: linear-gradient(145deg, #6b45a3, #2e1a4a) !important; color: var(--ouro) !important;
+  border: 3px solid var(--ouro); box-shadow: 0 0 0 6px #2e1a4a inset, 8px 10px 24px rgba(0,0,0,.35) !important; }
 .capa-livro h3 { color: var(--ouro); font-size: 2.2em; line-height: 1.1; }
 .capa-livro small { color: #e9d9a6; }
 
