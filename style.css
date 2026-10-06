@@ -109,3 +109,5 @@ html { scroll-behavior: smooth; }
   .menu { display: none; }
   .linha-tempo li { grid-template-columns: 1fr; gap: 2px; }
 }
+
+.galeria figure.sem-legenda figcaption { display: none; }
