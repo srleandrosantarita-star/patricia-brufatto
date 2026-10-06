@@ -15,6 +15,20 @@ const LIVROS = [
   { id: 14, titulo: "Sapiens", autor: "Yuval Noah Harari", categoria: "Não Ficção", preco: 69.9, cor: "#c0572b" },
   { id: 15, titulo: "Hábitos Atômicos", autor: "James Clear", categoria: "Não Ficção", preco: 44.9, cor: "#2b6f5a" },
   { id: 16, titulo: "O Homem Mais Rico da Babilônia", autor: "George S. Clason", categoria: "Não Ficção", preco: 22.9, cor: "#8a7a2b" },
+  // Edição Infantil: preços ainda não informados (preco: null mostra "Consulte o preço")
+  { id: 101, titulo: "Naruto – 500 Adesivos", autor: "Culturama", categoria: "Edição Infantil", preco: null, img: "imagens/livros/naruto-500-adesivos.jpg" },
+  { id: 102, titulo: "Mundo Encantado – Diversão Colorida", autor: "DCL", categoria: "Edição Infantil", preco: null, img: "imagens/livros/mundo-encantado.jpg" },
+  { id: 103, titulo: "Justice League – 365 Atividades e Desenhos para Colorir", autor: "Ciranda Cultural", categoria: "Edição Infantil", preco: null, img: "imagens/livros/justice-league-365.jpg" },
+  { id: 104, titulo: "Dinossauros – 365 Atividades e Desenhos para Colorir", autor: "Livro de atividades", categoria: "Edição Infantil", preco: null, img: "imagens/livros/dinossauros-365.jpg" },
+  { id: 105, titulo: "365 Desenhos para Colorir (Dinossauro)", autor: "Livro de atividades", categoria: "Edição Infantil", preco: null, img: "imagens/livros/365-desenhos-colorir.jpg" },
+  { id: 106, titulo: "OMG – 365 Atividades e Desenhos para Colorir", autor: "Livro de atividades", categoria: "Edição Infantil", preco: null, img: "imagens/livros/omg-365.jpg" },
+  { id: 107, titulo: "551 Atividades – Diversão que não acaba", autor: "Culturama", categoria: "Edição Infantil", preco: null, img: "imagens/livros/551-atividades.jpg" },
+  { id: 108, titulo: "Barbie – 365 Atividades e Desenhos para Colorir", autor: "Ciranda Cultural", categoria: "Edição Infantil", preco: null, img: "imagens/livros/barbie-365.jpg" },
+  { id: 109, titulo: "Disney Moana – 100 Páginas para Colorir", autor: "Disney", categoria: "Edição Infantil", preco: null, img: "imagens/livros/moana-100.jpg" },
+  { id: 110, titulo: "Disney Frozen II – 100 Páginas para Colorir e Aprender", autor: "Disney", categoria: "Edição Infantil", preco: null, img: "imagens/livros/frozen-100.jpg" },
+  { id: 111, titulo: "Disney Toy Story 4 – 100 Páginas para Colorir", autor: "Disney · Pixar", categoria: "Edição Infantil", preco: null, img: "imagens/livros/toy-story-100.jpg" },
+  { id: 112, titulo: "Unicórnios – 500 Adesivos", autor: "Culturama", categoria: "Edição Infantil", preco: null, img: "imagens/livros/unicornios-500-adesivos.jpg" },
+  { id: 113, titulo: "Disney Princesa – 100 Páginas para Colorir e Aprender", autor: "Disney", categoria: "Edição Infantil", preco: null, img: "imagens/livros/princesas-100.jpg" },
   // PROVISÓRIOS: títulos e preços fictícios até a lista real da autora ser informada
   { id: 17, titulo: "Livro de Exemplo 1 (provisório)", autor: "Patricia Brufatto", categoria: "Patricia Brufatto", preco: 39.9, cor: "#7a2b5a" },
   { id: 18, titulo: "Livro de Exemplo 2 (provisório)", autor: "Patricia Brufatto", categoria: "Patricia Brufatto", preco: 44.9, cor: "#2b5a7a" },
@@ -27,7 +41,7 @@ const FRETE_GRATIS = 150, FRETE_FIXO = 19.9;
 const brl = n => n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 const $ = id => document.getElementById(id);
 
-let categoria = "Patricia Brufatto";
+let categoria = "Edição Infantil";
 let carrinho = [];
 try { carrinho = JSON.parse(localStorage.getItem("carrinho")) || []; } catch {}
 
@@ -55,19 +69,24 @@ function renderCatalogo() {
     (categoria === "Todos" || l.categoria === categoria) &&
     (l.titulo + " " + l.autor).toLowerCase().includes(termo));
   const ord = $("ordenar").value;
-  lista.sort((a, b) => ord === "menor" ? a.preco - b.preco : ord === "maior" ? b.preco - a.preco : a.titulo.localeCompare(b.titulo, "pt-BR"));
+  lista.sort((a, b) => ord === "menor" ? (a.preco ?? 1e9) - (b.preco ?? 1e9) : ord === "maior" ? (b.preco ?? -1) - (a.preco ?? -1) : a.titulo.localeCompare(b.titulo, "pt-BR"));
 
   $("total-resultados").textContent = `${lista.length} livro(s)`;
   $("grade").innerHTML = lista.length ? lista.map(l => `
     <article class="livro">
-      <div class="capa" style="background:linear-gradient(160deg, ${l.cor}, #1d1a17)">
+      ${l.img
+        ? `<img class="capa-img" src="${l.img}" alt="Capa: ${l.titulo}" loading="lazy">`
+        : `<div class="capa" style="background:linear-gradient(160deg, ${l.cor}, #1d1a17)">
         <small>${l.categoria}</small><b>${l.titulo}</b><small>${l.autor}</small>
-      </div>
+      </div>`}
       <div class="info">
         <span class="autor">${l.autor}</span>
-        <span class="preco">${brl(l.preco)}</span>
+        ${l.preco == null
+          ? `<span class="preco">Consulte o preço</span>
+        <button class="btn-primario" data-consulta="${l.id}">Perguntar sobre este livro</button>`
+          : `<span class="preco">${brl(l.preco)}</span>
         <span class="parcela">ou 3x de ${brl(l.preco / 3)}</span>
-        <button class="btn-primario" data-add="${l.id}">Adicionar ao carrinho</button>
+        <button class="btn-primario" data-add="${l.id}">Adicionar ao carrinho</button>`}
       </div>
     </article>`).join("") : `<p class="vazio">Nenhum livro encontrado.</p>`;
 }
@@ -115,6 +134,13 @@ function abrirCarrinho(abrir) {
 }
 
 $("grade").addEventListener("click", e => {
+  const c = +e.target.dataset.consulta;
+  if (c) {
+    const l = LIVROS.find(x => x.id === c);
+    if (WHATSAPP) window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`Olá! Quero saber o preço do livro: ${l.titulo}`)}`, "_blank");
+    else toast("Em breve: fale com a Patricia para saber o preço");
+    return;
+  }
   const id = +e.target.dataset.add;
   if (!id) return;
   const item = carrinho.find(i => i.id === id);
