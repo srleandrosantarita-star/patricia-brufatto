@@ -88,4 +88,22 @@ document.addEventListener("keydown", e => { if (e.key === "Escape") lb.hidden = 
     el.style.animationDelay = (-Math.random() * 40) + "s";
     caixa.appendChild(el);
   }
+  // Fotos transparentes passando bem devagar
+  const fotos = ["patricia-com-livro", "patricia-oculos", "premiacao-certificado", "autografando", "evento-amigas",
+    "patricia-casa-de-cultura"];
+  fotos.forEach((nome, i) => {
+    const el = document.createElement("span");
+    el.className = "livro-passa foto-passa";
+    el.innerHTML = `<img src="imagens/${nome}.jpg" alt="">`;
+    const perto = .35 + Math.random() * .65;
+    el.style.top = (4 + (i % 3) * 30 + Math.random() * 14) + "%";
+    el.style.width = (110 + perto * 90) + "px";
+    el.style.setProperty("--op", (.12 + perto * .1).toFixed(2));
+    el.style.setProperty("--blur", ((1 - perto) * 2).toFixed(1) + "px");
+    el.style.setProperty("--dy", (Math.random() * 80 - 40) + "px");
+    el.style.setProperty("--rot", (Math.random() * 16 - 8) + "deg");
+    el.style.animationDuration = (80 + Math.random() * 25) + "s";
+    el.style.animationDelay = (-i * 15) + "s";
+    caixa.appendChild(el);
+  });
 })();

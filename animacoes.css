@@ -23,6 +23,7 @@
   92%  { opacity: var(--op); }
   100% { transform: translate3d(-20vw,var(--dy),0) rotate(var(--rot)); opacity: 0; }
 }
+.fundo-anim .foto-passa img { display: block; width: 100%; aspect-ratio: 4/5; object-fit: cover; border: 3px solid rgba(248,243,252,.8); border-radius: 6px; box-shadow: 0 10px 24px rgba(0,0,0,.35); }
 /* luzes douradas desfocadas ao fundo */
 .fundo-anim::before, .fundo-anim::after { content: ""; position: absolute; border-radius: 50%; filter: blur(60px); }
 .fundo-anim::before { width: 380px; height: 380px; left: -90px; bottom: -120px; background: rgba(242,193,78,.22); animation: luz 12s ease-in-out infinite alternate; }
