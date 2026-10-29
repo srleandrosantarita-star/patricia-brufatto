@@ -165,3 +165,7 @@
 .topo.mostra { opacity: 1; transform: none; pointer-events: auto; }
 .topo:hover { transform: translateY(-3px); }
 footer { background: var(--verde); color: var(--creme); border-top: 0; }
+
+/* Próximos eventos */
+.eventos .citacao { margin: 22px 0 0; font-family: Georgia, serif; font-style: italic; line-height: 1.6; color: var(--creme); }
+.eventos .citacao cite { display: block; margin-top: 6px; font-size: .85rem; color: var(--ouro); font-style: normal; }
