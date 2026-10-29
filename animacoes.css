@@ -10,18 +10,24 @@
 .hero.autora { position: relative; overflow: hidden; min-height: 86vh; color: var(--creme);
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center;
   grid-template-columns: none; padding: 40px 16px 80px;
-  background: radial-gradient(circle at 50% 35%, var(--verde2), var(--verde) 70%);
+  background: radial-gradient(ellipse at 78% 45%, rgba(155,110,215,.55), transparent 55%), linear-gradient(135deg, #1f0f38 0%, #3b2166 48%, #5a3794 100%);
   background-size: 140% 140%; animation: respira 10s ease-in-out infinite alternate; }
 @keyframes respira { from { background-position: 30% 30%; } to { background-position: 70% 60%; } }
 
 .fundo-anim { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-.fundo-anim .folha-cai { position: absolute; top: -60px; opacity: 0; animation: cai linear infinite; filter: drop-shadow(0 3px 4px rgba(0,0,0,.3)); }
-@keyframes cai {
-  0%   { transform: translate3d(0,0,0) rotate(0); opacity: 0; }
-  10%  { opacity: .8; }
-  50%  { transform: translate3d(var(--dx),55vh,0) rotate(180deg); }
-  100% { transform: translate3d(calc(var(--dx) * -1),112vh,0) rotate(360deg); opacity: 0; }
+.fundo-anim .livro-passa { position: absolute; left: 0; opacity: 0; filter: blur(var(--blur, 0)); animation: passa linear infinite; will-change: transform; }
+.fundo-anim .livro-passa svg { display: block; width: 100%; height: auto; }
+@keyframes passa {
+  0%   { transform: translate3d(105vw,0,0) rotate(calc(var(--rot) * -1)); opacity: 0; }
+  8%   { opacity: var(--op); }
+  92%  { opacity: var(--op); }
+  100% { transform: translate3d(-20vw,var(--dy),0) rotate(var(--rot)); opacity: 0; }
 }
+/* luzes douradas desfocadas ao fundo */
+.fundo-anim::before, .fundo-anim::after { content: ""; position: absolute; border-radius: 50%; filter: blur(60px); }
+.fundo-anim::before { width: 380px; height: 380px; left: -90px; bottom: -120px; background: rgba(242,193,78,.22); animation: luz 12s ease-in-out infinite alternate; }
+.fundo-anim::after { width: 440px; height: 440px; right: 8%; top: -160px; background: rgba(217,85,143,.22); animation: luz 15s ease-in-out infinite alternate-reverse; }
+@keyframes luz { to { transform: translate3d(40px,-30px,0) scale(1.15); } }
 
 .palco { position: relative; z-index: 2; width: 430px; height: 430px; display: grid; place-items: center; }
 .moldura { width: 260px; height: 260px; aspect-ratio: 1; animation: flutua 6s ease-in-out infinite; justify-self: auto; }
